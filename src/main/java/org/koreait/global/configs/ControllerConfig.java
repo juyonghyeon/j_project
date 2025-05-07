@@ -1,10 +1,10 @@
 package org.koreait.global.configs;
 
-import org.koreait.board.controllers.BoardController;
-import org.koreait.board.controllers.BoardListController;
-import org.koreait.board.controllers.BoardWriterController;
+import org.koreait.board.controllers.*;
+import org.koreait.board.services.BoardDeleteService;
 import org.koreait.board.services.BoardEnrollService;
 import org.koreait.board.services.BoardInfoService;
+import org.koreait.board.services.BoardUpdateService;
 import org.koreait.global.services.ServiceContainer;
 import org.koreait.main.controllers.MainController;
 import org.koreait.member.controllers.*;
@@ -83,4 +83,17 @@ public class ControllerConfig {
         BoardInfoService service = ServiceContainer.getBean(BoardInfoService.class);
         return new BoardListController(service);
     }
+    public BoardViewController boardViewController() {
+        BoardInfoService infoService = ServiceContainer.getBean(BoardInfoService.class);
+        BoardDeleteService deleteService = ServiceContainer.getBean(BoardDeleteService.class);
+
+        return new BoardViewController(infoService, deleteService);
+    }
+
+    public BoardUpdateController boardUpdateController() {
+        BoardInfoService infoService = ServiceContainer.getBean(BoardInfoService.class);
+        BoardEnrollService enrollService = ServiceContainer.getBean(BoardEnrollService.class);
+        return new BoardUpdateController(infoService, enrollService);
+    }
+
 }

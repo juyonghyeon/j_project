@@ -25,7 +25,6 @@ public class BoardService {
 
     @Bean
     public BoardInfoService infoService() {
-        System.out.println("요기 까지 옵니까?");
         return new BoardInfoService();
     }
 }

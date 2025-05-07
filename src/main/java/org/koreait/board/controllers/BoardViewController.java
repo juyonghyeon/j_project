@@ -23,6 +23,9 @@ public class BoardViewController extends Controller {
         setMenus(List.of("1", "2", "3"));
     }
 
+
+
+
     public static void setSeq(long seq) {
         BoardViewController.seq = seq;
     }
@@ -61,7 +64,7 @@ public class BoardViewController extends Controller {
             case 2: // 게시글 삭제
                 deleteService.process(seq);
                 System.out.println("게시글이 삭제 되었습니다. 목록으로 이동합니다.");
-
+                break;
 
             case 3: // 게시글 목록
                 Router.change(BoardController.class);
