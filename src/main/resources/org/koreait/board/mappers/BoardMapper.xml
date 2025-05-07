@@ -51,4 +51,8 @@
             email = #{email}
         </where>
     </update>
+    <delete id="delete">
+        SELECT * FROM member WHERE seq=#{seq}
+    </delete>>
+
 </mapper>

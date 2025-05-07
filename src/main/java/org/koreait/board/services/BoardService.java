@@ -20,4 +20,6 @@ public class BoardService {
     public BoardEnrollService enrollService() {
         return new BoardEnrollService(boardMapper(), boardSaveValidator());
     }
+
+
 }
