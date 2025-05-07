@@ -5,6 +5,7 @@ import org.koreait.global.router.Router;
 import org.koreait.main.controllers.MainController;
 import org.koreait.member.MemberSession;
 
+
 public class BoardController extends Controller {
     public BoardController() {
 
@@ -17,11 +18,17 @@ public class BoardController extends Controller {
             Router.change(MainController.class);
             return;
         }
-        System.out.println("게시판 관리");
+        StringBuffer sb = new StringBuffer(3500);
+        sb.append("1, 게시글 작성\n").append("2. 게시글 목록");
+        System.out.println(sb);
     }
+
+
 
     @Override
     public void process(String command) {
+        int menu = Integer.parseInt(command);
+
         System.out.println(command);
 
     }
