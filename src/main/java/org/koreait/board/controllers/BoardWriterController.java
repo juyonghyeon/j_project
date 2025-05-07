@@ -14,11 +14,13 @@ public class BoardWriterController extends Controller {
     public BoardWriterController(BoardEnrollService service) {
         this.service = service;
 
-    Scanner sc = new Scanner(System.in);
-    EnrollForm form = new EnrollForm();
-    Member member = MemberSession.getMember();
-    form.setEmail(member.getEmail());
+        Scanner sc = new Scanner(System.in);
+        EnrollForm form = new EnrollForm();
+
         setPrompt(() -> {
+            Member member = MemberSession.getMember();
+            form.setEmail(member.getEmail());
+
             while(true) {
                 try {
                     String title = inputEach("1. 제목", sc);

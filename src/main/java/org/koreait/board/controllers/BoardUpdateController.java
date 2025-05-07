@@ -10,11 +10,16 @@ import java.util.Scanner;
 
 public class BoardUpdateController extends Controller {
 
+    private static long seq;
     private final BoardUpdateService service;
 
     public BoardUpdateController(BoardUpdateService service) {
         this.service = service;
         setMenus(List.of("1", "2"));
+    }
+
+    public static void setSeq(long seq) {
+        BoardUpdateController.seq = seq;
     }
 
     @Override

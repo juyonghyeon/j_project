@@ -45,4 +45,8 @@ public class BoardInfoService  {
 
         return mapper.getList(search);
     }
+
+    public void updateMapper() {
+
+    }
 }
