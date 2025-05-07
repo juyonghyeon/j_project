@@ -74,6 +74,8 @@ public class ControllerConfig {
 
     public BoardWriterController boardWriterController() {
         BoardEnrollService service = ServiceContainer.getBean(BoardEnrollService.class);
+
         return new BoardWriterController(service);
+
     }
 }
