@@ -13,7 +13,7 @@ public interface BoardMapper {
     Optional<Board> get(String sql);
 
     @Select("SELECT COUNT(*) FROM board WHERE sql=#{sql}")
-    int exists( String sql);
+    int exists(String sql);
 
     int update(Board board);
 
