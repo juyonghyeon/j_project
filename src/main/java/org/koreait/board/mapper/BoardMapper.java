@@ -12,8 +12,10 @@ public interface BoardMapper {
     List<Board> getList(SearchForm search);
     Optional<Board> get(String seq);
 
+
     @Select("SELECT COUNT(*) FROM board WHERE sql=#{seq}")
     int exists( String seq);
+
 
     int update(Board board);
 
