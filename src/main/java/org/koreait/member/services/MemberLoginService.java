@@ -1,5 +1,6 @@
 package org.koreait.member.services;
 
+import org.koreait.board.services.MemberInfoService;
 import org.koreait.global.validators.Validator;
 import org.koreait.member.MemberSession;
 import org.koreait.member.controllers.LoginForm;
@@ -11,7 +12,7 @@ import org.koreait.member.entities.Member;
  */
 public class MemberLoginService {
     private final Validator<LoginForm> validator;
-    private final MemberInfoService infoService;
+    private final org.koreait.board.services.MemberInfoService infoService;
 
     // 의존성 주입
     public MemberLoginService(Validator<LoginForm> validator, MemberInfoService infoService) {
