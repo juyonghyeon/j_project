@@ -1,16 +1,12 @@
 package org.koreait.board.services;
 
-import org.apache.ibatis.annotations.Mapper;
 import org.koreait.board.controllers.EnrollForm;
+import org.koreait.board.entities.Board;
+import org.koreait.board.mapper.BoardMapper;
 import org.koreait.global.configs.DBConn;
 import org.koreait.global.validators.Validator;
 import org.koreait.member.MemberSession;
-import org.koreait.member.controllers.JoinForm;
-import org.koreait.board.entities.Board;
-import org.koreait.board.mappers.BoardMapper;
 import org.koreait.member.entities.Member;
-import org.koreait.member.mappers.MemberMapper;
-import org.mindrot.jbcrypt.BCrypt;
 
 public class BoardEnrollService {
     private BoardMapper mapper;
@@ -22,6 +18,7 @@ public class BoardEnrollService {
      * @param mapper
      * @param validator
      */
+
     public BoardEnrollService(BoardMapper mapper, Validator<EnrollForm> validator) {
         this.mapper = mapper;
         this.validator = validator;
