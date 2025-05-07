@@ -15,6 +15,7 @@ public interface BoardMapper {
     @Select("SELECT COUNT(*) FROM board WHERE sql=#{sql}")
     int exists( String sql);
 
-    // 회원정보 수정
     int update(Board board);
+
+    int delete(long seq);
 }
