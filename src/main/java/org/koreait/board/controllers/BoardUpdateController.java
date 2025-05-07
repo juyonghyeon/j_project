@@ -1,58 +1,63 @@
 package org.koreait.board.controllers;
 
+import org.koreait.board.entities.Board;
+import org.koreait.board.services.BoardEnrollService;
+import org.koreait.board.services.BoardInfoService;
 import org.koreait.board.services.BoardUpdateService;
-import org.koreait.global.router.Controller;
 import org.koreait.global.router.Router;
+import org.koreait.global.router.Controller;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class BoardUpdateController extends Controller {
+    private static long seq; // 게시글 번
+    private final BoardInfoService infoService;
+    private final BoardEnrollService enrollService;
 
-    private static long seq;
-    private final BoardUpdateService service;
-
-    public BoardUpdateController(BoardUpdateService service) {
-        this.service = service;
-        setMenus(List.of("1", "2"));
+    public BoardUpdateController(BoardInfoService infoService, BoardEnrollService enrollService) {
+        this.infoService = infoService;
+        this.enrollService = enrollService;
+        setMenus(List.of("1", "2", "3"));
     }
 
     public static void setSeq(long seq) {
-                BoardUpdateController.seq = seq;
+        BoardUpdateController.seq = seq;
     }
 
     @Override
     public void common() {
-        System.out.println("*************** 회원정보 수정 *******************");
+        System.out.println("*************** 게시글 수정 *******************");
     }
 
     @Override
     public void show() {
-        System.out.println("변경할 번호를 선택하세요.");
-        System.out.println("1. 회원명, 2. 휴대전화번호, 3. 비밀번호");
+        System.out.println("수정할 항목을 선택하세요(m - 메인메뉴, q - 종료).");
+        System.out.println("1. 작성자, 2. 제목, 3. 내용");
     }
-
     @Override
     public void process(String command) {
         int menu = Integer.parseInt(command);
+        Board item = infoService.get(seq);
         EnrollForm form = new EnrollForm();
-        form.setSeq(seq);
+        form.setSeq(item.getSeq());
 
         Scanner sc = new Scanner(System.in);
-        switch(menu) {
-            case 1: // 제목변경
-                String title = inputEach("변경할 제목", sc);
-                form.setTitle(title);
-                break;
-            case 2: // 내용변경
-                String content = inputEach("변경할 내용", sc);
-                form.setContent(content);
-                break;
+        String str = inputEach("변경내용 입력", sc);
+
+        switch (menu) {
+            case 1: // 작성자
+                form.setName(str); break;
+            case 2: // 제목
+                form.setTitle(str); break;
+            case 3: // 내용
+                form.setContent(str); break;
         }
 
-        service.process(form); // 회원정보 수정 처리
+        enrollService.process(form);
 
-        // 회원정보 수정 완료 후 회원정보 확인 페이지로 이동
-        Router.change(BoardUpdateController.class);
+        // 수정 완료 후 게시글 보기로 이동
+        BoardViewController.setSeq(seq);
+        Router.change(BoardViewController.class);
     }
 }

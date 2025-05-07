@@ -3,6 +3,7 @@ package org.koreait.board.controllers;
 import org.koreait.board.services.BoardEnrollService;
 import org.koreait.global.exceptions.CommonException;
 import org.koreait.global.router.Controller;
+import org.koreait.global.router.Router;
 import org.koreait.member.MemberSession;
 import org.koreait.member.entities.Member;
 
@@ -28,11 +29,13 @@ public class BoardWriterController extends Controller {
 
                     String content = inputEach("2. 내용", sc);
                     form.setContent(content);
-
+                    service.process(form);
+                    break;
                 } catch (CommonException e) {
                     printError(e);
                 }
             }
+            Router.change(BoardListController.class);
         });
     }
 

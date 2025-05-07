@@ -32,7 +32,7 @@ public class BoardViewController extends Controller {
         if (seq < 1L) throw new BoardNotFoundException();
         // 게시글 조회
         service.updateMapper();
-        Board item = service.get(String.valueOf(seq));
+        Board item = service.get(seq);
 
         /* 게시글 내용 출력 */
         System.out.printf("작성자: %s%n", item.getEmail());

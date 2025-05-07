@@ -43,10 +43,10 @@ public class BoardListController extends Controller {
 
                     search.setSopt(sopt);
 
-                    String skey = inputEach(menu == 5 ? "1. 게시글번호": "2. 검색키워드", sc);
+                    String skey = inputEach(menu == 4 ? "1. 게시글번호": "2. 검색키워드", sc);
                     search.setSkey(skey);
 
-                    if (menu == 5) { // 게시글 보기 화면으로 이동
+                    if (menu == 4) { // 게시글 보기 화면으로 이동
                         try {
                             // 게시글 번호 등록
                             long seq = Integer.parseInt(skey);

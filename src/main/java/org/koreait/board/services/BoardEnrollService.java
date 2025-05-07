@@ -38,6 +38,5 @@ public class BoardEnrollService {
             board.setMemberSeq(member.getSeq());
             mapper.register(board);
         }
-
     }
 }
