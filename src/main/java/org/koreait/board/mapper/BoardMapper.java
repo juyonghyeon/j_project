@@ -10,10 +10,12 @@ import java.util.Optional;
 public interface BoardMapper {
     int register(Board board);
     List<Board> getList(SearchForm search);
-    Optional<Board> get(String sql);
+    Optional<Board> get(String seq);
 
-    @Select("SELECT COUNT(*) FROM board WHERE sql=#{sql}")
-    int exists(String sql);
+
+    @Select("SELECT COUNT(*) FROM board WHERE sql=#{seq}")
+    int exists( String seq);
+
 
     int update(Board board);
 

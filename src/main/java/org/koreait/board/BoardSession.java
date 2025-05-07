@@ -9,7 +9,7 @@ import org.koreait.board.entities.Board;
 public class BoardSession {
     private static Board board;
 
-    public static void setMember(Board board) {
+    public static void setBoard(Board board) {
         BoardSession.board = board;
     }
 
@@ -18,13 +18,13 @@ public class BoardSession {
         return board;
     }
 
-    // 로그인 여부
-    public static boolean isLogin() {
-        return board != null;
-    }
-
-    // 로그아웃 처리
-    public static void logout() {
-        board = null;
-    }
+//    // 로그인 여부
+//    public static boolean isLogin() {
+//        return board != null;
+//    }
+//
+//    // 로그아웃 처리
+//    public static void logout() {
+//        board = null;
+//    }
 }

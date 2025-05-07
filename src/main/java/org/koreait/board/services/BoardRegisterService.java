@@ -14,7 +14,7 @@ public class BoardRegisterService {
     private final BoardEnrollService enrollService;
 
     // 의존성 주입
-    public BoardEnrollService(Validator<EnrollForm> validator, BoardEnrollService enrollService) {
+    public BoardRegisterService(Validator<EnrollForm> validator, BoardEnrollService enrollService) {
         this.validator = validator;
         this.enrollService = enrollService;
     }
