@@ -3,7 +3,7 @@ package org.koreait.board.services;
 import org.koreait.board.BoardSession;
 import org.koreait.board.entities.Board;
 import org.koreait.global.validators.Validator;
-import org.koreait.member.controllers.LoginForm;
+import org.koreait.board.controllers.EnrollForm;
 
 /**
  * 로그인 처리 서비스
@@ -14,7 +14,7 @@ public class BoardRegisterService {
     private final BoardInfoService infoService;
 
     // 의존성 주입
-    public BoardLoginService(Validator<EnrollForm> validator, BoardInfoService infoService) {
+    public BoardEnrollService(Validator<EnrollForm> validator, BoardInfoService infoService) {
         this.validator = validator;
         this.infoService = infoService;
     }
@@ -26,7 +26,7 @@ public class BoardRegisterService {
         validator.check(form);
 
         // 로그인 처리 S
-        Board board = infoService.get(form.getSql());
+        Board board = infoService.get(form.getSeq());
         BoardSession.setBoard(board);
         // 로그인 처리 E
     }
