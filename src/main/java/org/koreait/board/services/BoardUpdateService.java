@@ -6,7 +6,6 @@ import org.koreait.board.entities.Board;
 import org.koreait.board.mapper.BoardMapper;
 import org.koreait.global.configs.DBConn;
 import org.koreait.global.validators.Validator;
-import org.mindrot.jbcrypt.BCrypt;
 
 public class BoardUpdateService {
     private BoardMapper mapper;
@@ -18,17 +17,11 @@ public class BoardUpdateService {
     }
 
     public void process(EnrollForm form) {
-        // 회원정보 수정 유효성 검사
+        // 수정 유효성 검사
         validator.check(form);
         Board board = new Board();
         board.setTitle(BoardSession.getBoard().getTitle());
         board.setTitle(form.getTitle());
-
-        // 비밀번호 변경인 경우 BCrypt 해시 변환
-        String content = form.getContent();
-        if (content != null && !content.isBlank()) {
-            board.setContent(BCrypt.hashpw(content, BCrypt.gensalt(12)));
-        }
 
         mapper.update(board); // 수정처리
 
@@ -36,7 +29,7 @@ public class BoardUpdateService {
         mapper = DBConn.getInstance().getSession().getMapper(BoardMapper.class);
 
         // 로그인한 회원 정보도 갱신한다.
-        board = mapper.get(board.getSeq()).orElse(null);
+        board = mapper.get(board.getSeq());
         BoardSession.setBoard(board);
     }
 }
