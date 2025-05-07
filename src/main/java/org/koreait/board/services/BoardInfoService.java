@@ -22,15 +22,15 @@ public class BoardInfoService  {
     }
 
     /**
-     * 이메일 주소로 회원 1명 조회
+     * 게시글 번호
      *
-     * @param email
+     * @param seq
      * @return
      */
 
-    public Board get(String email) {
+    public Board get(long seq) {
         updateMapper();
-        return mapper.get(email).orElseThrow(BoardNotFoundException::new);
+        return mapper.get(seq).orElseThrow(BoardNotFoundException::new);
     }
 
     /**

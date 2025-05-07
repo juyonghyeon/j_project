@@ -4,12 +4,13 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.koreait.board.mappers.BoardMapper">
     <insert id="register" useGeneratedKeys="true" keyProperty="seq">
-        INSERT INTO member (title, content, email)
-        VALUES (#{title}, #{content}, #{email})
+        INSERT INTO member (title, content, memberSeq)
+        VALUES (#{title}, #{content}, #{memberSeq})
     </insert>
 
     <select id="getList">
-        SELECT * FROM board
+        SELECT b.*, m.email, m.name FROM board b
+            LEFT JOIN member m ON b.memberSeq = m.seq
         <where>
             <if test="skey != null">
                 <bind name="_skey" value="'%' + _parameter.getSkey() + '%'" />
@@ -28,7 +29,7 @@
     </select>
 
     <select id="get">
-        SELECT * FROM member WHERE seq=#{seq}
+        SELECT * FROM board WHERE seq=#{seq}
     </select>
 
     <update id="update">

@@ -10,8 +10,7 @@ import java.util.Optional;
 public interface BoardMapper {
     int register(Board board);
     List<Board> getList(SearchForm search);
-    Optional<Board> get(String email);
-    Board get(long seq);
+    Optional<Board> get(long seq);
 
 
     @Select("SELECT COUNT(*) FROM board WHERE seq=#{seq}")
