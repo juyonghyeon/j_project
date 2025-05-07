@@ -1,6 +1,7 @@
 package org.koreait.member.services;
 
 import org.apache.ibatis.session.SqlSession;
+import org.koreait.board.services.MemberInfoService;
 import org.koreait.global.configs.DBConn;
 import org.koreait.global.services.Bean;
 import org.koreait.global.services.Configuration;
@@ -28,7 +29,7 @@ public class MemberService {
     }
 
     @Bean
-    public MemberInfoService infoService() {
+    public org.koreait.board.services.MemberInfoService infoService() {
         return new MemberInfoService(memberMapper());
     }
 
