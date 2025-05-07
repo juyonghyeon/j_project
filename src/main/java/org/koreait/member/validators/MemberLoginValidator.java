@@ -4,7 +4,7 @@ import org.koreait.global.validators.RequiredFieldValidator;
 import org.koreait.global.validators.Validator;
 import org.koreait.member.controllers.LoginForm;
 import org.koreait.member.entities.Member;
-import org.koreait.member.services.MemberInfoService;
+import org.koreait.board.services.MemberInfoService;
 import org.mindrot.jbcrypt.BCrypt;
 
 /**
