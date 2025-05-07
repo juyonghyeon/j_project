@@ -1,5 +1,6 @@
 package org.koreait.board.services;
 
+import org.koreait.board.controllers.EnrollForm;
 import org.koreait.board.entities.Board;
 import org.koreait.board.mapper.BoardMapper;
 import org.koreait.global.configs.DBConn;
@@ -35,7 +36,7 @@ public class BoardUpdateService {
         mapper = DBConn.getInstance().getSession().getMapper(BoardMapper.class);
 
         // 로그인한 회원 정보도 갱신한다.
-        board = mapper.get(board.getSql()).orElse(null);
+        board = mapper.get(board.getSeq()).orElse(null);
         BoardSession.setBoard(board);
     }
 }
