@@ -1,21 +1,16 @@
 package org.koreait.board.services;
 
-import org.apache.ibatis.annotations.Mapper;
 import org.koreait.board.controllers.EnrollForm;
+import org.koreait.board.entities.Board;
+import org.koreait.board.mapper.BoardMapper;
 import org.koreait.global.configs.DBConn;
 import org.koreait.global.validators.Validator;
 import org.koreait.member.MemberSession;
-import org.koreait.member.controllers.JoinForm;
-import org.koreait.board.entities.Board;
-import org.koreait.board.mappers.BoardMapper;
 import org.koreait.member.entities.Member;
-import org.koreait.member.mappers.MemberMapper;
-import org.mindrot.jbcrypt.BCrypt;
 
 public class BoardEnrollService {
     private BoardMapper mapper;
-    private final Validator<EnrollForm> validator;  // 유효성 검사를 위한 Validator
-
+    private final Validator<EnrollForm> validator;
 
     public BoardEnrollService(BoardMapper mapper, Validator<EnrollForm> validator) {
         this.mapper = mapper;
@@ -42,10 +37,8 @@ public class BoardEnrollService {
             // 회원정보는 수정될 수 없고 추가시에만 등록
             Member member = MemberSession.getMember();
             board.setMemberSeq(member.getSeq());
+            mapper.register(board);
         }
-
-
-
 
     }
 }
