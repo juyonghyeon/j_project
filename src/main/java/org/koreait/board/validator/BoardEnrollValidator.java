@@ -5,8 +5,7 @@ import org.koreait.board.entities.Board;
 import org.koreait.board.services.BoardEnrollService;
 import org.koreait.global.validators.RequiredFieldValidator;
 import org.koreait.global.validators.Validator;
-import org.koreait.member.controllers.LoginForm;
-import org.koreait.member.entities.Member;
+import org.koreait.board.mapper.BoardMapper;
 
 /**
  * 로그인 유효성 검사
@@ -26,12 +25,11 @@ public class BoardEnrollValidator implements Validator<EnrollForm>, RequiredFiel
 
         // 필수항목 검증 - 이메일, 비밀번호
         checkString(email, "이메일을 입력하세요.");
-        checkString(title, "변경할 게시글을 입력하세요.");
 
-        String message = "이메일 또는 비밀번호가 일치하지 않습니다.";
+        String message = "게시글이 없습니다.";
 
         // 등록된 게시 글인지 검증
-        Board board = enrollService.get(seq);
+        Board board = enrollService.equals(seq);
         checkTrue(board != null, message);
 
         // 이메일 일치여부 체크
