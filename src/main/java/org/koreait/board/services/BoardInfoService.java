@@ -1,10 +1,9 @@
 package org.koreait.board.services;
 
 import org.koreait.board.entities.Board;
+import org.koreait.board.mapper.BoardMapper;
 import org.koreait.global.paging.SearchForm;
-import org.koreait.member.entities.Member;
-import org.koreait.member.exceptions.MemberNotFoundException;
-import org.koreait.member.mappers.MemberMapper;
+import org.koreait.board.exceptions.BoardNotFoundException;
 
 import java.util.List;
 
