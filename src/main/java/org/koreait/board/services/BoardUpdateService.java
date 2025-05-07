@@ -1,18 +1,18 @@
 package org.koreait.board.services;
 
+import org.koreait.board.BoardSession;
 import org.koreait.board.controllers.EnrollForm;
 import org.koreait.board.entities.Board;
 import org.koreait.board.mapper.BoardMapper;
 import org.koreait.global.configs.DBConn;
 import org.koreait.global.validators.Validator;
-import org.koreait.member.controllers.JoinForm;
 import org.mindrot.jbcrypt.BCrypt;
 
 public class BoardUpdateService {
-    private Board mapper;
-    private final Validator<JoinForm> validator;
+    private BoardMapper mapper;
+    private final Validator<EnrollForm> validator;
 
-    public BoardUpdateService(BoardMapper mapper, Validator<JoinForm> validator) {
+    public BoardUpdateService(BoardMapper mapper, Validator<EnrollForm> validator) {
         this.mapper = mapper;
         this.validator = validator;
     }
