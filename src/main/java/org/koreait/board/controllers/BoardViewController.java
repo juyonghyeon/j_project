@@ -32,13 +32,11 @@ public class BoardViewController extends Controller {
         if (seq < 1L) throw new BoardNotFoundException();
         // 게시글 조회
         service.updateMapper();
-        BoardData item = service.get(seq);
+        Board item = service.get(String.valueOf(seq));
 
         /* 게시글 내용 출력 */
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm:ss");
-        System.out.printf("작성일시: %s%n", formatter.format(item.getRegDt()));
-        System.out.printf("작성자: %s%n", item.getPoster());
-        System.out.printf("제목: %s%n", item.getSubject());
+        System.out.printf("작성자: %s%n", item.getEmail());
+        System.out.printf("제목: %s%n", item.getTitle());
         printLine();
         System.out.println(item.getContent()); // 내용 출력
         printLine();
@@ -66,7 +64,7 @@ public class BoardViewController extends Controller {
 
 
             case 3: // 게시글 목록
-                Router.change(BoardListController.class);
+                Router.change(BoardController.class);
                 break;
 
         }
