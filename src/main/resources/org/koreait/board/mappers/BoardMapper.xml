@@ -2,57 +2,58 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.koreait.member.mappers.MemberMapper">
+<mapper namespace="org.koreait.board.mappers.BoardMapper">
     <insert id="register" useGeneratedKeys="true" keyProperty="seq">
-        INSERT INTO member (email, password, name, mobile, terms)
-        VALUES (#{email}, #{password}, #{name}, #{mobile}, #{terms})
+        INSERT INTO board (email, title, content)
+        VALUES (#{email}, #{title}, #{content}
     </insert>
 
-    <select id="getList">
-        SELECT * FROM member
-        <where>
-            <if test="skey != null">
-                <bind name="_skey" value="'%' + _parameter.getSkey() + '%'" />
-                <if test="sopt == 'email'">
-                    title LIKE #{_skey}
-                </if>
-                <if test="sopt == 'name'">
-                    content LIKE #{_skey}
-                </if>
-                <if test="sopt == 'mobile'">
-                    mobile LIKE #{_skey}
-                </if>
-                <if test="sopt == null">
-                    CONCAT(email, name, mobile) LIKE #{_skey}
-                </if>
-            </if>
-        </where>
-        ORDER BY regDt DESC LIMIT #{offset}, #{limit};
-    </select>
-
-    <select id="get">
-        SELECT * FROM member WHERE email=#{email}
-    </select>
-
     <update id="update">
-        UPDATE member
+        UPDATE BOARD
         <set>
-            <if test="name != null">
-                name = #{name},
+            <if test="email != null">
+                email = #{email},
             </if>
-            <if test="mobile != null">
-                mobile = #{mobile},
+            <if test="title != null">
+                title = #{title},
             </if>
-            <if test="password != null">
-                password = #{password},
+            <if test="content != null">
+                content = #{content},
             </if>
         </set>
         <where>
-            email = #{email}
+            seq = #{seq}
         </where>
     </update>
     <delete id="delete">
-        SELECT * FROM member WHERE seq=#{seq}
-    </delete>>
+        DELETE FROM BOARD WHERE seq=#{seq}
+    </delete>
+
+    <select id="get">
+        SELECT * FROM BOARD WHERE seq=#{seq}
+    </select>
+
+    <select id="getList">
+        SELECT b.*, m.name, m.email FROM BOARD b
+        LEFT JOIN member m ON b.memberSeq = m.seq
+        <where>
+            <if test="skey != null">
+                <bind name="keyword" value="'%' + _parameter.getSkey() + '%'" />
+                <if test="sopt == 'email'">
+                    email LIKE #{keyword}
+                </if>
+                <if test="sopt == 'title'">
+                    AND title LIKE #{keyword}
+                </if>
+                <if test="sopt == 'content'">
+                    AND content LIKE #{keyword}
+                </if>
+                <if test="sopt == null">
+                    CONCAT(poster, subject, content) LIKE #{keyword}
+                </if>
+            </if>
+        </where>
+        ORDER BY regDt DESC LIMIT #{offset}, #{limit}
+    </select>
 
 </mapper>

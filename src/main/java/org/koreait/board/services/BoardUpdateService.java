@@ -36,7 +36,7 @@ public class BoardUpdateService {
         mapper = DBConn.getInstance().getSession().getMapper(BoardMapper.class);
 
         // 로그인한 회원 정보도 갱신한다.
-        board = mapper.get(board.getSeq()).orElse(null);
+        board = mapper.get(String.valueOf(board.getSeq())).orElse(null);
         BoardSession.setBoard(board);
     }
 }
