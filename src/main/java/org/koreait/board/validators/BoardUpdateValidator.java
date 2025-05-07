@@ -1,4 +1,4 @@
-package org.koreait.board.validator;
+package org.koreait.board.validators;
 
 import org.koreait.board.controllers.EnrollForm;
 import org.koreait.global.validators.RequiredFieldValidator;
