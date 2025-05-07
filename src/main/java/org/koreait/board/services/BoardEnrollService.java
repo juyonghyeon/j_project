@@ -16,12 +16,21 @@ public class BoardEnrollService {
     private BoardMapper mapper;
     private final Validator<EnrollForm> validator;  // 유효성 검사를 위한 Validator
 
-
+    /**
+     * 의존성 주입
+     *
+     * @param mapper
+     * @param validator
+     */
     public BoardEnrollService(BoardMapper mapper, Validator<EnrollForm> validator) {
         this.mapper = mapper;
         this.validator = validator;
     }
 
+    /**
+     * 회원 가입 처리
+     *
+     */
     public void process(EnrollForm form) {
         // 회원 가입 데이터 유효성 검사
         validator.check(form);
@@ -44,8 +53,16 @@ public class BoardEnrollService {
             board.setMemberSeq(member.getSeq());
         }
 
+        Board member = new Board();
+        member.setEmail(form.getEmail());
+        member.setSeq(form.getSeq());
+        member.setTitle(form.getTitle());
+        member.setContent(form.getContent());
 
 
+        // 유효성 검사 통과했다면 DB 처리 E
 
+        // mybatis는 생성된 mapper 조회 결과를 캐싱하므로 이를 갱신 해야 함
+        mapper = DBConn.getInstance().getSession().getMapper(BoardMapper.class);
     }
 }
