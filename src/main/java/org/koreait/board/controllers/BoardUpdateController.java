@@ -36,21 +36,19 @@ public class BoardUpdateController extends Controller {
 
         Scanner sc = new Scanner(System.in);
         switch(menu) {
-            case 1: // 제곰ㄱ
-                String title = inputEach("변경할 회원명", sc);
+            case 1: // 제목변경
+                String title = inputEach("변경할 제목", sc);
                 form.setTitle(title);
                 break;
-            case 3: // 비밀번호 변경
-                String password = inputEach("변경할 비밀번호", sc);
-                String confirmPassword = inputEach("변경할 비밀번호 확인", sc);
-                form.setPassword(password);
-                form.setConfirmPassword(confirmPassword);
+            case 2: // 내용변경
+                String content = inputEach("변경할 내용", sc);
+                form.setContent(content);
                 break;
         }
 
         service.process(form); // 회원정보 수정 처리
 
         // 회원정보 수정 완료 후 회원정보 확인 페이지로 이동
-        Router.change(BoardInfoController.class);
+        Router.change(BoardUpdateController.class);
     }
 }
