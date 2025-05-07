@@ -21,6 +21,7 @@ public class ControllerConfig {
         return new MainController();
     }
     /* 회원 관련 S */
+
     /**
      * 회원 메인 컨트롤러
      *
@@ -61,6 +62,7 @@ public class ControllerConfig {
         return new MemberAdminController();
     }
     /* 회원 관련 E */
+
     /**
      * 게시글 작성, 수정, 조회 관련 컨트롤러
      *
@@ -69,8 +71,9 @@ public class ControllerConfig {
     public BoardController boardController() {
         return new BoardController();
     }
-}
+
     public BoardWriterController boardWriterController() {
         BoardEnrollService service = ServiceContainer.getBean(BoardEnrollService.class);
-        return
+        return new BoardWriterController(service);
     }
+}
