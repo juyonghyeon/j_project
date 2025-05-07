@@ -1,4 +1,4 @@
-package org.koreait.board.mapper;
+package org.koreait.board.mappers;
 
 import org.apache.ibatis.annotations.Select;
 import org.koreait.board.entities.Board;
