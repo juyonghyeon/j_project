@@ -12,7 +12,7 @@ public interface BoardMapper {
     List<Board> getList(SearchForm search);
     Optional<Board> get(String sql);
 
-    @Select("SELECT COUNT(*) FROM member WHERE email=#{email}")
+    @Select("SELECT COUNT(*) FROM member WHERE sql=#{sql}")
     int exists( String sql);
 
     // 회원정보 수정
