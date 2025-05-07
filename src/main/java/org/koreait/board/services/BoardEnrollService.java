@@ -14,23 +14,13 @@ import org.mindrot.jbcrypt.BCrypt;
 
 public class BoardEnrollService {
     private BoardMapper mapper;
-    private final Validator<EnrollForm> validator;  // 유효성 검사를 위한 Validator
+    private final Validator<EnrollForm> validator;
 
-    /**
-     * 의존성 주입
-     *
-     * @param mapper
-     * @param validator
-     */
     public BoardEnrollService(BoardMapper mapper, Validator<EnrollForm> validator) {
         this.mapper = mapper;
         this.validator = validator;
     }
 
-    /**
-     * 회원 가입 처리
-     *
-     */
     public void process(EnrollForm form) {
         // 회원 가입 데이터 유효성 검사
         validator.check(form);
@@ -53,7 +43,7 @@ public class BoardEnrollService {
             board.setMemberSeq(member.getSeq());
         }
 
-        Board member = new Board();
+        Member member = MemberSession.getMember();
         member.setEmail(form.getEmail());
         member.setSeq(form.getSeq());
         member.setTitle(form.getTitle());

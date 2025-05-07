@@ -5,10 +5,12 @@ import org.koreait.global.router.Router;
 import org.koreait.main.controllers.MainController;
 import org.koreait.member.MemberSession;
 
+import java.util.List;
+
 
 public class BoardController extends Controller {
     public BoardController() {
-
+        setMenus(List.of("1", "2"));
     }
     @Override
     public void show() {
@@ -29,7 +31,14 @@ public class BoardController extends Controller {
     public void process(String command) {
         int menu = Integer.parseInt(command);
 
-        System.out.println(command);
+        switch (menu) {
+            case 1:
+                Router.change(BoardWriteController.class); // 게시글 작성 화면으로 이동
+                break;
+            case 2:
+                Router.change(BoardListController.class); // 게시글 목록 화면 이동
+                break;
+        }
 
     }
 }
