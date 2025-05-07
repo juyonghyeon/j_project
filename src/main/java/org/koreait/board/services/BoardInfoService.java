@@ -12,7 +12,6 @@ public class BoardInfoService  {
 
     private BoardMapper mapper;
 
-
     public BoardInfoService() {
         updateMapper();
     }
