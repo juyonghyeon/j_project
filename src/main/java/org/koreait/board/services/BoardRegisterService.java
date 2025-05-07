@@ -1,6 +1,5 @@
 package org.koreait.board.services;
 
-import org.koreait.board.BoardSession;
 import org.koreait.board.entities.Board;
 import org.koreait.global.validators.Validator;
 import org.koreait.board.controllers.EnrollForm;

@@ -1,10 +1,11 @@
 package org.koreait.board.services;
 
-import org.koreait.board.BoardSession;
 import org.koreait.board.controllers.EnrollForm;
 import org.koreait.board.entities.Board;
 import org.koreait.board.mappers.BoardMapper;
 import org.koreait.global.validators.Validator;
+import org.koreait.member.MemberSession;
+import org.koreait.member.entities.Member;
 
 public class BoardEnrollService {
     private BoardMapper mapper;
@@ -14,12 +15,7 @@ public class BoardEnrollService {
         this.mapper = mapper;
         this.validator = validator;
     }
-    public Board get(Long seq) {
-        if (seq == null) {
-        return null;
-        }
-        return mapper.get(seq);
-    }
+
 
     public void process(EnrollForm form) {
         // 회원 가입 데이터 유효성 검사
@@ -35,12 +31,11 @@ public class BoardEnrollService {
          * seq가 있으면 수정, 없으면 추가
          */
 
-        if (form.getSeq() > 0L) {
+        if (form.getSeq() > 0L) { // 수정 
             item.setSeq(form.getSeq());
-        } else {
-            // 회원정보는 수정될 수 없고 추가시에만 등록
-            board = BoardSession.getBoard();
-            board.setSeq(board.getSeq());
+        } else { // 추가
+            Member member = MemberSession.getMember();
+            board.setMemberSeq(member.getSeq());
             mapper.register(board);
         }
 

@@ -10,7 +10,9 @@ public class Board {
     private long memberSeq;
     private String title;
     private String content;
+    private LocalDateTime regDt;
+    private LocalDateTime modDt;
     private String email;
-    private LocalDateTime enrDt;
+    private String name;
 }
 

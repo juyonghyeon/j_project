@@ -1,6 +1,5 @@
 package org.koreait.board.controllers;
 
-import org.koreait.board.BoardSession;
 import org.koreait.board.services.BoardUpdateService;
 import org.koreait.global.router.Controller;
 import org.koreait.global.router.Router;
@@ -19,7 +18,7 @@ public class BoardUpdateController extends Controller {
     }
 
     public static void setSeq(long seq) {
-        BoardUpdateController.seq = seq;
+                BoardUpdateController.seq = seq;
     }
 
     @Override
@@ -37,7 +36,7 @@ public class BoardUpdateController extends Controller {
     public void process(String command) {
         int menu = Integer.parseInt(command);
         EnrollForm form = new EnrollForm();
-        form.setEmail(BoardSession.getBoard().getEmail()); // 로그인한 회원 이메일 정보
+        form.setSeq(seq);
 
         Scanner sc = new Scanner(System.in);
         switch(menu) {
