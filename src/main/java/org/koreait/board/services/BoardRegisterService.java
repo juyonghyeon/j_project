@@ -11,12 +11,12 @@ import org.koreait.board.controllers.EnrollForm;
  */
 public class BoardRegisterService {
     private final Validator<EnrollForm> validator;
-    private final BoardInfoService infoService;
+    private final BoardEnrollService enrollService;
 
     // 의존성 주입
-    public BoardEnrollService(Validator<EnrollForm> validator, BoardInfoService infoService) {
+    public BoardEnrollService(Validator<EnrollForm> validator, BoardEnrollService enrollService) {
         this.validator = validator;
-        this.infoService = infoService;
+        this.enrollService = enrollService;
     }
 
     // 로그인 처리
@@ -25,9 +25,9 @@ public class BoardRegisterService {
         // 유효성 검사
         validator.check(form);
 
-        // 로그인 처리 S
-        Board board = infoService.get(form.getSeq());
+        // 업로드 처리 S
+        Board board = enrollService.get(form.getSeq());
         BoardSession.setBoard(board);
-        // 로그인 처리 E
+        // 업로드 처리 E
     }
 }

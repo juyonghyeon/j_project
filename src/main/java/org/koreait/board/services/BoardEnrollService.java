@@ -42,9 +42,9 @@ public class BoardEnrollService {
 
         Board member = new Board();
         member.setEmail(form.getEmail());
-        member.setName(form.getName());
-        member.setMobile(mobile);
-        member.setTerms(form.isTerms());
+        member.setSeq(form.getSeq());
+        member.setTitle(form.getTitle());
+        member.setContent(form.getContent());
 
 
         // 유효성 검사 통과했다면 DB 처리 E
