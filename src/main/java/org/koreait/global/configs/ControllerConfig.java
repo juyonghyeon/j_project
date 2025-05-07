@@ -4,7 +4,6 @@ import org.koreait.board.controllers.*;
 import org.koreait.board.services.BoardDeleteService;
 import org.koreait.board.services.BoardEnrollService;
 import org.koreait.board.services.BoardInfoService;
-import org.koreait.board.services.BoardUpdateService;
 import org.koreait.global.services.ServiceContainer;
 import org.koreait.main.controllers.MainController;
 import org.koreait.member.controllers.*;

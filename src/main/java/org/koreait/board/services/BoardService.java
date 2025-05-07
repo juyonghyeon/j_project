@@ -27,4 +27,10 @@ public class BoardService {
     public BoardInfoService infoService() {
         return new BoardInfoService();
     }
+
+    @Bean
+    public BoardDeleteService boardDeleteService() {
+        BoardMapper mapper = DBConn.getInstance().getSession().getMapper(BoardMapper.class);
+        return new BoardDeleteService(mapper);
+    }
 }

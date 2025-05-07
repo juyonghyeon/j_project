@@ -26,13 +26,14 @@ public class BoardEnrollService {
         board.setTitle(form.getTitle());
         board.setContent(form.getContent());
 
-        Board item = new Board();
+
         /**
          * seq가 있으면 수정, 없으면 추가
          */
 
         if (form.getSeq() > 0L) { // 수정 
-            item.setSeq(form.getSeq());
+            board.setSeq(form.getSeq());
+            mapper.update(board);
         } else { // 추가
             Member member = MemberSession.getMember();
             board.setMemberSeq(member.getSeq());

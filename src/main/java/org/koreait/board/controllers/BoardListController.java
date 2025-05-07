@@ -44,7 +44,7 @@ public class BoardListController extends Controller {
                     search.setSopt(sopt);
 
                     String skey = inputEach(menu == 4 ? "1. 게시글번호": "2. 검색키워드", sc);
-                    search.setSkey(skey);
+
 
                     if (menu == 4) { // 게시글 보기 화면으로 이동
                         try {
@@ -52,10 +52,14 @@ public class BoardListController extends Controller {
                             long seq = Integer.parseInt(skey);
                             BoardViewController.setSeq(seq);
                             Router.change(BoardViewController.class);
+                            search = new SearchForm();
                         } catch (NumberFormatException e) {
                             System.out.println("게시글 번호는 숫자로 입력하세요.");
                         }
+
                         return;
+                    } else {
+                        search.setSkey(skey);
                     }
                     show(); // 화면 갱신
                 } catch (CommonException e) {

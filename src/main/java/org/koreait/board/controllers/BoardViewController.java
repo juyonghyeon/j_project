@@ -38,7 +38,6 @@ public class BoardViewController extends Controller {
         Board item = service.get(seq);
 
         /* 게시글 내용 출력 */
-        System.out.printf("작성자: %s%n", item.getEmail());
         System.out.printf("제목: %s%n", item.getTitle());
         printLine();
         System.out.println(item.getContent()); // 내용 출력
@@ -64,10 +63,8 @@ public class BoardViewController extends Controller {
             case 2: // 게시글 삭제
                 deleteService.process(seq);
                 System.out.println("게시글이 삭제 되었습니다. 목록으로 이동합니다.");
-                break;
-
             case 3: // 게시글 목록
-                Router.change(BoardController.class);
+                Router.change(BoardListController.class);
                 break;
 
         }

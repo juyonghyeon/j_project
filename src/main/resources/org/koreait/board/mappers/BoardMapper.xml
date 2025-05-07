@@ -7,47 +7,46 @@
         INSERT INTO board (title, content, memberSeq)
         VALUES (#{title}, #{content}, #{memberSeq})
     </insert>
-
-    <select id="getList">
-        SELECT b.*, m.email, m.name FROM board b
-            LEFT JOIN member m ON b.memberSeq = m.seq
-        <where>
-            <if test="skey != null">
-                <bind name="_skey" value="'%' + _parameter.getSkey() + '%'" />
-                <if test="sopt == 'title'">
-                    title LIKE #{_skey}
-                </if>
-                <if test="sopt == 'content'">
-                    content LIKE #{_skey}
-                </if>
-                <if test="sopt == null">
-                    CONCAT(email, title) LIKE #{_skey}
-                </if>
-            </if>
-        </where>
-        ORDER BY regDt DESC LIMIT #{offset}, #{limit};
-    </select>
-
-    <select id="get">
-        SELECT * FROM board WHERE seq=#{seq}
-    </select>
-
     <update id="update">
         UPDATE board
         <set>
-            <if test="name != null">
+            <if test="title != null">
                 title = #{title},
             </if>
-            <if test="mobile != null">
+            <if test="content != null">
                 content = #{content},
             </if>
+            modDt = CURRENT_TIMESTAMP
         </set>
         <where>
             seq = #{seq}
         </where>
     </update>
     <delete id="delete">
-        SELECT * FROM board WHERE seq=#{seq}
+        DELETE FROM board WHERE seq=#{seq}
     </delete>
 
+    <select id="get">
+        SELECT * FROM board WHERE seq=#{seq}
+    </select>
+
+    <select id="getList">
+        SELECT b.*, m.name, m.email FROM board b
+        LEFT JOIN member m ON b.memberSeq = m.seq
+        <where>
+            <if test="skey != null">
+                <bind name="keyword" value="'%' + _parameter.getSkey() + '%'" />
+                <if test="sopt == 'title'">
+                    AND title LIKE #{keyword}
+                </if>
+                <if test="sopt == 'content'">
+                    AND content LIKE #{keyword}
+                </if>
+                <if test="sopt == null">
+                    CONCAT(title, content) LIKE #{keyword}
+                </if>
+            </if>
+        </where>
+        ORDER BY regDt DESC LIMIT #{offset}, #{limit}
+    </select>
 </mapper>

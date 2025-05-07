@@ -32,7 +32,7 @@ public class BoardUpdateController extends Controller {
     @Override
     public void show() {
         System.out.println("수정할 항목을 선택하세요(m - 메인메뉴, q - 종료).");
-        System.out.println("1. 작성자, 2. 제목, 3. 내용");
+        System.out.println("1. 제목, 2. 내용");
     }
 
     @Override
@@ -48,10 +48,8 @@ public class BoardUpdateController extends Controller {
 
             switch (menu) {
                 case 1:
-                    form.setName(str); break;
-                case 2:
                     form.setTitle(str); break;
-                case 3:
+                case 2:
                     form.setContent(str); break;
                 default:
                     System.out.println("잘못된 입력입니다. 다시 시도해주세요.");
