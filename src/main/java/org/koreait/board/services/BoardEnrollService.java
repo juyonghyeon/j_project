@@ -3,7 +3,7 @@ package org.koreait.board.services;
 import org.koreait.board.BoardSession;
 import org.koreait.board.controllers.EnrollForm;
 import org.koreait.board.entities.Board;
-import org.koreait.board.mapper.BoardMapper;
+import org.koreait.board.mappers.BoardMapper;
 import org.koreait.global.validators.Validator;
 
 public class BoardEnrollService {

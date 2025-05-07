@@ -1,10 +1,12 @@
 package org.koreait.board.services;
 
-import org.koreait.board.mapper.BoardMapper;
+import org.koreait.board.mappers.BoardMapper;
 import org.koreait.board.validators.BoardEnrollValidator;
 import org.koreait.global.configs.DBConn;
 import org.koreait.global.services.Bean;
+import org.koreait.global.services.Configuration;
 
+@Configuration
 public class BoardService {
     @Bean
     public BoardMapper boardMapper() {
@@ -21,5 +23,9 @@ public class BoardService {
         return new BoardEnrollService(boardMapper(), boardSaveValidator());
     }
 
-
+    @Bean
+    public BoardInfoService infoService() {
+        System.out.println("요기 까지 옵니까?");
+        return new BoardInfoService();
+    }
 }

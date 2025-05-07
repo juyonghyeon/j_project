@@ -1,7 +1,8 @@
 package org.koreait.board.services;
 
 import org.koreait.board.entities.Board;
-import org.koreait.board.mapper.BoardMapper;
+import org.koreait.board.mappers.BoardMapper;
+import org.koreait.global.configs.DBConn;
 import org.koreait.global.paging.SearchForm;
 import org.koreait.board.exceptions.BoardNotFoundException;
 
@@ -9,13 +10,16 @@ import java.util.List;
 
 public class BoardInfoService  {
 
-    private final BoardMapper mapper;
+    private BoardMapper mapper;
 
 
-    public BoardInfoService(BoardMapper mapper) {
-        this.mapper = mapper;
+    public BoardInfoService() {
+        updateMapper();
     }
 
+    public void updateMapper() {
+        mapper = DBConn.getInstance().getSession().getMapper(BoardMapper.class);
+    }
 
     /**
      * 이메일 주소로 회원 1명 조회
@@ -25,6 +29,7 @@ public class BoardInfoService  {
      */
 
     public Board get(String email) {
+        updateMapper();
         return mapper.get(email).orElseThrow(BoardNotFoundException::new);
     }
 
@@ -34,6 +39,7 @@ public class BoardInfoService  {
      * @return
      */
     public List<Board> getList(SearchForm search) {
+        updateMapper();
         int page = Math.max(search.getPage(), 1);
         int limit = search.getLimit();
         limit = limit < 1 ? 10 : limit;
@@ -44,9 +50,5 @@ public class BoardInfoService  {
         search.setLimit(limit);
 
         return mapper.getList(search);
-    }
-
-    public void updateMapper() {
-
     }
 }
